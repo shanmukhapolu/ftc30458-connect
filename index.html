@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="description"
+    content="Sign up for announcements, updates, and important information from MasterMinds #30458."
+  >
+
+  <meta name="theme-color" content="#090b0f">
+
+  <title>Stay Connected | MasterMinds #30458</title>
+
+  <!-- Match the main MasterMinds website typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="icon"
+    href="https://i.postimg.cc/Y9ZGNZ5j/Master-Minds-Logo.png"
+    type="image/png"
+  >
+
+  <style>
+    :root {
+      --primary: #ff7900;
+      --primary-dark: #df6700;
+      --primary-soft: rgba(255, 121, 0, 0.10);
+
+      --secondary: #22ceac;
+      --secondary-soft: rgba(34, 206, 172, 0.09);
+
+      --bg: #090b0f;
+      --bg-dark: #06080c;
+
+      --surface: rgba(255, 255, 255, 0.035);
+      --surface-hover: rgba(255, 255, 255, 0.055);
+
+      --text-primary: #f7f8fa;
+      --text-secondary: #a3abb7;
+      --text-muted: #6f7885;
+
+      --border: rgba(255, 255, 255, 0.09);
+      --border-strong: rgba(255, 255, 255, 0.14);
+
+      --radius: 12px;
+      --radius-lg: 16px;
+
+      --shadow:
+        0 18px 50px rgba(0, 0, 0, 0.22);
+
+      --transition:
+        260ms cubic-bezier(.2, .7, .2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+    }
+
+    body {
+      min-height: 100svh;
+      overflow-x: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding:
+        max(24px, env(safe-area-inset-top))
+        max(16px, env(safe-area-inset-right))
+        max(24px, env(safe-area-inset-bottom))
+        max(16px, env(safe-area-inset-left));
+
+      background: var(--bg);
+      color: var(--text-primary);
+
+      font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      line-height: 1.6;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      width: min(100%, 520px);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      width: 58px;
+      height: 58px;
+
+      object-fit: contain;
+
+      margin-bottom: 16px;
+
+      border-radius: 14px;
+
+      filter:
+        drop-shadow(0 10px 22px rgba(255, 121, 0, 0.12));
+    }
+
+    .brand-name {
+      font-family: "Sora", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-name span {
+      color: var(--primary);
+    }
+
+    .eyebrow {
+      margin-top: 5px;
+
+      color: var(--text-muted);
+
+      font-size: 0.68rem;
+      font-weight: 700;
+
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .card {
+      width: 100%;
+
+      padding: 32px;
+
+      background: var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius-lg);
+
+      box-shadow: var(--shadow);
+    }
+
+    .card-top {
+      margin-bottom: 26px;
+    }
+
+    .title {
+      margin-bottom: 12px;
+
+      font-family: "Sora", sans-serif;
+
+      font-size: clamp(2rem, 8vw, 2.8rem);
+      font-weight: 700;
+
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+    }
+
+    .title span {
+      color: var(--primary);
+    }
+
+    .description {
+      color: var(--text-secondary);
+
+      font-size: 0.96rem;
+      line-height: 1.72;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .label {
+      color: var(--text-primary);
+
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .input {
+      width: 100%;
+      min-height: 52px;
+
+      padding:
+        0 15px;
+
+      color: var(--text-primary);
+
+      background: rgba(255, 255, 255, 0.025);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 10px;
+
+      outline: none;
+
+      -webkit-appearance: none;
+
+      transition:
+        border-color var(--transition),
+        background-color var(--transition),
+        box-shadow var(--transition);
+    }
+
+    .input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .input:hover {
+      background: var(--surface-hover);
+    }
+
+    .input:focus {
+      background: var(--surface-hover);
+      border-color: rgba(255, 121, 0, 0.65);
+
+      box-shadow:
+        0 0 0 3px rgba(255, 121, 0, 0.10);
+    }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+
+      padding: 14px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 10px;
+
+      background: rgba(255, 255, 255, 0.02);
+
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .consent:hover {
+      background: var(--surface-hover);
+    }
+
+    .checkbox {
+      width: 19px;
+      height: 19px;
+
+      flex: 0 0 auto;
+
+      margin-top: 2px;
+
+      accent-color: var(--primary);
+
+      cursor: pointer;
+    }
+
+    .consent-text {
+      color: var(--text-secondary);
+
+      font-size: 0.78rem;
+      line-height: 1.55;
+    }
+
+    .consent-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .submit {
+      width: 100%;
+      min-height: 52px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      border: 1px solid transparent;
+      border-radius: 10px;
+
+      background: var(--primary);
+      color: #ffffff;
+
+      font-size: 0.9rem;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition:
+        transform var(--transition),
+        background-color var(--transition),
+        box-shadow var(--transition),
+        opacity var(--transition);
+    }
+
+    .submit:hover:not(:disabled) {
+      background: var(--primary-dark);
+
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 12px 28px rgba(255, 121, 0, 0.20);
+    }
+
+    .submit:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .submit:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .submit-spinner {
+      width: 17px;
+      height: 17px;
+
+      border:
+        2px solid rgba(255, 255, 255, 0.35);
+
+      border-top-color: #fff;
+
+      border-radius: 50%;
+
+      animation: spin 700ms linear infinite;
+
+      display: none;
+    }
+
+    .submit.loading .submit-spinner {
+      display: block;
+    }
+
+    .submit.loading .submit-text {
+      display: none;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .status {
+      display: none;
+
+      margin-top: 18px;
+
+      padding: 13px 14px;
+
+      border-radius: 10px;
+
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .status.success {
+      display: block;
+
+      color: var(--secondary);
+
+      background: var(--secondary-soft);
+
+      border:
+        1px solid rgba(34, 206, 172, 0.20);
+    }
+
+    .status.error {
+      display: block;
+
+      color: #ffb184;
+
+      background: var(--primary-soft);
+
+      border:
+        1px solid rgba(255, 121, 0, 0.20);
+    }
+
+    .success-state {
+      display: none;
+
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 56px;
+      height: 56px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin:
+        0 auto 18px;
+
+      border:
+        1px solid rgba(34, 206, 172, 0.22);
+
+      border-radius: 50%;
+
+      background: var(--secondary-soft);
+      color: var(--secondary);
+    }
+
+    .success-icon svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .success-title {
+      margin-bottom: 9px;
+
+      font-family: "Sora", sans-serif;
+
+      font-size: 1.65rem;
+      line-height: 1.15;
+      letter-spacing: -0.045em;
+    }
+
+    .success-description {
+      color: var(--text-secondary);
+
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+
+      text-align: center;
+
+      color: var(--text-muted);
+
+      font-size: 0.68rem;
+      line-height: 1.6;
+    }
+
+    .footer-note span {
+      color: var(--secondary);
+    }
+
+    .honeypot {
+      position: absolute !important;
+      left: -99999px !important;
+
+      width: 1px !important;
+      height: 1px !important;
+
+      overflow: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        align-items: flex-start;
+
+        padding-top:
+          max(26px, env(safe-area-inset-top));
+      }
+
+      .page {
+        width: 100%;
+      }
+
+      .brand {
+        margin-bottom: 16px;
+      }
+
+      .logo {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 13px;
+      }
+
+      .card {
+        padding: 23px 19px;
+      }
+
+      .card-top {
+        margin-bottom: 22px;
+      }
+
+      .title {
+        font-size: clamp(2rem, 10vw, 2.55rem);
+      }
+
+      .description {
+        font-size: 0.91rem;
+      }
+
+      .input,
+      .submit {
+        min-height: 54px;
+      }
+
+      .consent {
+        padding: 13px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .card {
+        padding: 20px 16px;
+      }
+
+      .title {
+        font-size: 1.95rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <header class="brand">
+      <img
+        class="logo"
+        src="https://i.postimg.cc/Y9ZGNZ5j/Master-Minds-Logo.png"
+        alt="MasterMinds #30458 logo"
+      >
+
+      <div class="brand-name">
+        MasterMinds <span>#30458</span>
+      </div>
+
+      <div class="eyebrow">
+        FTC Robotics
+      </div>
+    </header>
+
+    <section class="card">
+
+      <div id="formState">
+
+        <div class="card-top">
+          <h1 class="title">
+            Stay <span>Connected.</span>
+          </h1>
+
+          <p class="description">
+            Get occasional announcements, competition updates, and other
+            important information from MasterMinds #30458.
+          </p>
+        </div>
+
+        <form class="form" id="signupForm" novalidate>
+
+          <!-- Honeypot field for simple bot protection -->
+          <div class="honeypot" aria-hidden="true">
+            <label for="website">Website</label>
+            <input
+              id="website"
+              name="website"
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+            >
+          </div>
+
+          <div class="field">
+            <label class="label" for="name">
+              Name
+            </label>
+
+            <input
+              class="input"
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Your name"
+              autocomplete="name"
+              autocapitalize="words"
+              maxlength="100"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label class="label" for="email">
+              Email
+            </label>
+
+            <input
+              class="input"
+              id="email"
+              name="email"
+              type="email"
+              inputmode="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              autocapitalize="none"
+              autocorrect="off"
+              spellcheck="false"
+              maxlength="254"
+              required
+            >
+          </div>
+
+          <label class="consent" for="consent">
+            <input
+              class="checkbox"
+              id="consent"
+              name="consent"
+              type="checkbox"
+              required
+            >
+
+            <span class="consent-text">
+              <strong>Keep me updated.</strong>
+              I agree to receive occasional emails from MasterMinds #30458
+              about announcements, events, competition updates, and other
+              team information.
+            </span>
+          </label>
+
+          <button
+            class="submit"
+            id="submitButton"
+            type="submit"
+          >
+            <span class="submit-text">
+              Sign Me Up
+              <span aria-hidden="true">→</span>
+            </span>
+
+            <span class="submit-spinner" aria-hidden="true"></span>
+          </button>
+
+        </form>
+
+        <div
+          class="status"
+          id="status"
+          role="status"
+          aria-live="polite"
+        ></div>
+
+      </div>
+
+      <div
+        class="success-state"
+        id="successState"
+        aria-live="polite"
+      >
+
+        <div class="success-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m5 12 4 4L19 6"></path>
+          </svg>
+        </div>
+
+        <h2 class="success-title">
+          You're on the list.
+        </h2>
+
+        <p class="success-description">
+          Thanks for staying connected with MasterMinds #30458.
+          We'll only send occasional team updates and important information.
+        </p>
+
+      </div>
+
+    </section>
+
+    <p class="footer-note">
+      MasterMinds #30458
+      <span>·</span>
+      Engineering with Purpose. Competing with Precision.
+    </p>
+
+  </main>
+
+  <!-- Firebase + Firestore -->
+  <script type="module">
+
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+
+    import { getAnalytics } from
+      "https://www.gstatic.com/firebasejs/13.0.0/firebase-analytics.js";
+
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp
+    } from
+      "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC9lmh5Emj4TLZeJHzjLC93H9GoNwnta7s",
+      authDomain: "ftc-connect-a4f4f.firebaseapp.com",
+      projectId: "ftc-connect-a4f4f",
+      storageBucket: "ftc-connect-a4f4f.firebasestorage.app",
+      messagingSenderId: "119947842070",
+      appId: "1:119947842070:web:2d78e54fa2e8bb35b3db37",
+      measurementId: "G-RHBQBSQV1Z"
+    };
+
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Analytics
+    const analytics = getAnalytics(app);
+
+    // Firestore
+    const db = getFirestore(app);
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const form = document.getElementById("signupForm");
+      const submitButton = document.getElementById("submitButton");
+      const status = document.getElementById("status");
+      const formState = document.getElementById("formState");
+      const successState = document.getElementById("successState");
+
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const consentInput = document.getElementById("consent");
+      const honeypotInput = document.getElementById("website");
+
+
+      const showStatus = (message, type) => {
+        status.textContent = message;
+        status.className = `status ${type}`;
+      };
+
+
+      const setLoading = (loading) => {
+        submitButton.disabled = loading;
+        submitButton.classList.toggle("loading", loading);
+      };
+
+
+      form.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        status.className = "status";
+        status.textContent = "";
+
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim().toLowerCase();
+
+
+        /*
+         * Silently ignore honeypot submissions.
+         */
+        if (honeypotInput.value.trim() !== "") {
+          form.reset();
+          return;
+        }
+
+
+        /*
+         * Validate name.
+         */
+        if (!name) {
+          showStatus(
+            "Please enter your name.",
+            "error"
+          );
+
+          nameInput.focus();
+          return;
+        }
+
+
+        /*
+         * Validate email.
+         */
+        if (!emailInput.validity.valid || !email) {
+          showStatus(
+            "Please enter a valid email address.",
+            "error"
+          );
+
+          emailInput.focus();
+          return;
+        }
+
+
+        /*
+         * Validate consent.
+         */
+        if (!consentInput.checked) {
+          showStatus(
+            "Please check the box to agree to receive occasional emails.",
+            "error"
+          );
+
+          consentInput.focus();
+          return;
+        }
+
+
+        setLoading(true);
+
+
+        try {
+
+          /*
+           * Store one signup as one Firestore document.
+           *
+           * Collection:
+           *
+           * newsletterSubscribers
+           *
+           * Example document:
+           *
+           * {
+           *   name: "Alex Smith",
+           *   email: "alex@example.com",
+           *   consent: true,
+           *   createdAt: <Firestore timestamp>
+           * }
+           */
+          await addDoc(
+            collection(db, "newsletterSubscribers"),
+            {
+              name: name,
+              email: email,
+              consent: true,
+              createdAt: serverTimestamp()
+            }
+          );
+
+
+          /*
+           * Show success state.
+           */
+          formState.style.display = "none";
+          successState.style.display = "block";
+
+          form.reset();
+
+
+        } catch (error) {
+
+          console.error(
+            "Newsletter signup error:",
+            error
+          );
+
+          showStatus(
+            "Something went wrong while signing you up. Please try again.",
+            "error"
+          );
+
+
+        } finally {
+
+          setLoading(false);
+
+        }
+
+      });
+
+    });
+
+  </script>
+</body>
+</html>
