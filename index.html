@@ -469,6 +469,49 @@
       line-height: 1.7;
     }
 
+    .back-button {
+      margin-top: 22px;
+
+      min-height: 44px;
+      padding: 0 18px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      border:
+        1px solid var(--border-strong);
+
+      border-radius: 10px;
+
+      background: transparent;
+      color: var(--text-primary);
+
+      font-size: 0.82rem;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition:
+        transform var(--transition),
+        background-color var(--transition),
+        border-color var(--transition),
+        color var(--transition);
+    }
+
+    .back-button:hover {
+      background: var(--surface-hover);
+      border-color: var(--secondary);
+      color: var(--secondary);
+
+      transform: translateY(-2px);
+    }
+
+    .back-button:active {
+      transform: translateY(0);
+    }
+
     .footer-note {
       margin-top: 18px;
 
@@ -725,6 +768,15 @@
           We'll only send occasional team updates and important information.
         </p>
 
+        <button
+          class="back-button"
+          id="backButton"
+          type="button"
+        >
+          <span aria-hidden="true">←</span>
+          Back to Form
+        </button>
+
       </div>
 
     </section>
@@ -789,6 +841,9 @@
       const emailInput = document.getElementById("email");
       const consentInput = document.getElementById("consent");
       const honeypotInput = document.getElementById("website");
+      const backButton = document.getElementById("backButton");
+
+      let resetTimer = null;
 
 
       const showStatus = (message, type) => {
@@ -801,6 +856,25 @@
         submitButton.disabled = loading;
         submitButton.classList.toggle("loading", loading);
       };
+
+
+      const resetToForm = () => {
+        if (resetTimer) {
+          clearTimeout(resetTimer);
+          resetTimer = null;
+        }
+
+        successState.style.display = "none";
+        formState.style.display = "block";
+        status.className = "status";
+        status.textContent = "";
+        form.reset();
+
+        nameInput.focus();
+      };
+
+
+      backButton.addEventListener("click", resetToForm);
 
 
       form.addEventListener("submit", async (event) => {
@@ -905,6 +979,10 @@
           successState.style.display = "block";
 
           form.reset();
+
+          resetTimer = setTimeout(() => {
+            resetToForm();
+          }, 5000);
 
 
         } catch (error) {
